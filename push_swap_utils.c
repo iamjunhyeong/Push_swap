@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/24 22:37:22 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:55:12 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,7 @@ void	rev_rotate_a(t_node *node)
 	if (node->size >= 2)
 	{
 		node->head = node->head->next;
-		write (1, "rra\n", 3);
+		write (1, "rra\n", 4);
 	}
 }
 
@@ -270,7 +270,7 @@ void	rev_rotate_b(t_node *node)
 	if (node->size >= 2)
 	{
 		node->head = node->head->next;
-		write (1, "rrb\n", 3);
+		write (1, "rrb\n", 4);
 	}
 }
 
@@ -280,7 +280,7 @@ void	rev_rotate_r(t_node *a_node, t_node *b_node)
 	{
 		a_node->head = a_node->head->next;
 		b_node->head = b_node->head->next;
-		write (1, "rrr\n", 3);
+		write (1, "rrr\n", 4);
 	}
 }
 void	two_list_sort(t_node *node)
@@ -314,6 +314,13 @@ void	two_list_sort(t_node *node)
 
 void	three_list_sort(t_node *node)
 {
+	if (node->size == 1)
+		return ;
+	if (node->size == 2)
+	{
+		two_list_sort(node);
+		return ;
+	}
 	if (node->head->next->data > node->head->prev->data)
 	{
 		if (node->head->data < node->head->next->data)
@@ -476,26 +483,55 @@ void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
 	three_list_sort(a_node);
 }
 
+
+
+// int check_location(t_node *a_node, t_list *tmp, int top)
+// {
+// 	t_list	*tmp;
+// 	int		i;
+
+// 	i = 0;
+// 	head = a_node->head;
+// 	if (top < tmp->data && top > tmp->prev->data)
+// 	{
+		
+// 	}
+// }
+
+t_list	*find_top(t_node *a_node, int *ind)
+{
+	t_list	*tmp;
+	int		min;
+	int		i;
+
+	i = 0;
+	tmp = a_node->head->prev;
+	min = tmp->data;
+	while (i++ < a_node->size)
+	{
+		if (min > tmp->data)
+		{
+			min = tmp->data;
+			*ind = i - 1;
+		}
+		tmp = tmp->prev;
+	}
+	i = 0;
+	while (i++ < *ind)
+		tmp = tmp->prev;
+	return (tmp);
+}
+
 int	find_a_location(int top, t_node *a_node)
 {
 	t_list	*tmp;
 	int		ind;
-	int		mind;
-
-	mind = 0;
+	int		i;
+	
 	ind = 0;
-	tmp = a_node->head->prev;
-	while (mind < a_node->size)
-	{
-		if (tmp->prev->data < tmp->data)
-		{
-			ind = mind;
-			break;
-		}
-		tmp = tmp->prev;
-		mind++;
-	}
-	while (ind < a_node->size)
+	i = 0;
+	tmp = find_top(a_node, &ind);
+	while (i++ < a_node->size)
 	{
 		if (top < tmp->data)
 			break ;
@@ -507,43 +543,62 @@ int	find_a_location(int top, t_node *a_node)
 	return (ind);
 }
 
-int	location_cmp(int a, int b, int a_l, int b_l)
+int	location_cmp(int ab, int lab)
 {
-	if (b < 0)
-		b = -b;
-	if (b_l < 0)
-		b_l = -b_l;
-	if (a + b > a_l + b_l)
+	int	cnt;
+	int lcnt;
+
+	cnt = 0;
+	lcnt = 0;
+	while (ab)
+	{
+		if (ab < 0)
+			ab++;
+		else
+			ab--;
+		cnt++;
+	}
+	while (lab)
+	{
+		if (lab < 0)
+			lab++;
+		else
+			lab--;
+		lcnt++;
+	}
+	if (cnt > lcnt)
 		return (1);
 	return (0);
 }
 
 void	minimum_rotate(t_node *a_node, t_node *b_node, int *a, int *b)
 {
-	t_list	*tmp;
+	t_list	*b_tmp;
 	int		a_location;
 	int		b_location;
 	int		ind;
-	int		top;
+	int		b_top;
 
 	ind = 0;
-	tmp = b_node->head->prev;
+	b_tmp = b_node->head->prev;
 	while (ind < b_node->size)
 	{
-		top = tmp->data;
+		b_top = b_tmp->data;
 		b_location = ind;
-		a_location = find_a_location(top, a_node);
+		a_location = find_a_location(b_top, a_node);
 		if (ind >= (b_node->size + 1) / 2)
 			b_location = (b_node->size - ind) * (-1);
-		if (ind == 0 || location_cmp(*a, *b, a_location, b_location))
+
+		if (ind == 0 || location_cmp(*a - *b, a_location - b_location))
 		{
 			*a = a_location;
 			*b = b_location;
 		}
-		tmp = tmp->prev;
+		b_tmp = b_tmp->prev;
 		ind++;
 	}
 }
+
 void	apply_rotate_r(t_node *a_node, t_node *b_node, int *a, int *b)
 {
 	while ((*a > 0) && (*b > 0))
@@ -588,32 +643,38 @@ void	apply_rotate_b(t_node *b_node, int b)
 	}
 }
 
-int	find_list_min(t_node *a_node, int *min_ind)
+int	find_list_min(t_node *a_node)
 {
 	t_list	*tmp;
+	int		min_ind;
 	int		min;
+	int		i;
 
+	i = 0;
+	min_ind = 0;
 	tmp = a_node->head->prev;
 	min = tmp->data;
-	while (*min_ind < a_node->size)
+	while (i < a_node->size)
 	{
-		tmp = tmp->prev;
 		if (tmp->data < min)
+		{
 			min = tmp->data;
-		*min_ind = *min_ind + 1;
+			min_ind = i;
+		}
+		i++;
+		tmp = tmp->prev;
 	}
-	return (min);
+	return (min_ind);
 }
 
-void	sort_first(t_node *a_node)
+void	sort_last(t_node *a_node)
 {
-	int	min;
 	int	min_ind;
 
-	min_ind = 0;
-	min = find_list_min(a_node, &min_ind);
+	min_ind = find_list_min(a_node);
 	if (min_ind >= (a_node->size + 1) / 2)
 		min_ind = (a_node->size - min_ind) * (-1);
+	printf("min_ind : %d\n", min_ind);
 	while (min_ind)
 	{
 		if (min_ind > 0)
@@ -637,7 +698,6 @@ void	sort(t_node *a_node, t_node *b_node)
 
 	find_pibot(a_node, pibot);
 	divide_stack(a_node, b_node, pibot);
-	ft_lstprint(a_node);
 	while (b_node->size)
 	{
 		a = 0;
@@ -647,10 +707,8 @@ void	sort(t_node *a_node, t_node *b_node)
 		apply_rotate_a(a_node, a);
 		apply_rotate_b(b_node, b);
 		push_A(a_node, b_node);
-		ft_lstprint(a_node);
-
 	}
-	sort_first(a_node);
+	sort_last(a_node);
 }
 
 int main(int argc, char **argv)
@@ -663,11 +721,15 @@ int main(int argc, char **argv)
 		return (ERROR);
 	a_node = init_node();
 	b_node = init_node();
+	if (!a_node || !b_node)
+		return (ERROR);
 	
 	arr_size = set_arr(argc, argv, a_node);
 	if (arr_size == -1)
 		return (ERROR);
-
-	sort(a_node, b_node);
+	if (a_node->size <= 3)
+		three_list_sort(a_node);
+	else
+		sort(a_node, b_node);
 	ft_lstprint(a_node);
 }
