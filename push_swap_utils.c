@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/26 19:55:12 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/28 17:25:33 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ t_list	*ft_lstnew(int data)
 {
 	t_list	*newnode;
 
+	if (data == 0)
+		return (NULL);
 	newnode = (t_list *)malloc(sizeof(t_list));
 	if (!newnode)
 		return (NULL);
@@ -335,24 +337,71 @@ void	three_list_sort(t_node *node)
 		swap_a(node);
 }
 
-int	set_arr(int ac, char **av, t_node *node)
+size_t	ft_strlen(const char *s)
+{
+	size_t	n;
+
+	n = 0;
+	while (s[n] != 0)
+		n++;
+	return ((size_t)n);
+}
+
+int	long_length_word(int ac, char **av, t_node *node)
 {
 	t_list	*tmp;
-	int		 cnt;
-	// arr = (int *)malloc(sizeof(int) * ac);
-	// if (!arr)
-	// 	return (-1);
+	char	**str;
+	int		cnt;
+	
 	cnt = 0;
+	str = ft_split(av[ac], ' ', &cnt);
+	while (cnt--)
+	{
+		tmp = ft_lstnew(ft_atoi(str[cnt]));
+		if (!tmp)
+		{
+			str = freeall(str);
+			return (0);
+		}
+		ft_lstadd_back(node, tmp);
+		if (node->size == 2147483647)
+			return (node->size);
+	}
+	str = freeall(str);
+	return (1);
+}
+
+int	one_length_word(int ac, char **av, t_node *node)
+{
+	t_list	*tmp;
+
+	tmp = ft_lstnew(ft_atoi(av[ac]));
+	if (!tmp)
+		return (0);
+	ft_lstadd_back(node, tmp);
+	return (1);
+}
+
+int	set_arr(int ac, char **av, t_node *node)
+{
 	while (ac-- > 1)
 	{
-		tmp = ft_lstnew(ft_atoi(av[ac]));
-		if (!tmp)
-			return (-1);
-		ft_lstadd_back(node, tmp);
-		cnt++;
+		if (ft_strlen(av[ac]) > 1)
+		{
+			if (!long_length_word(ac, av, node))
+				return (-1);
+		}
+		else
+		{
+			if (!one_length_word(ac, av, node))
+				return (-1);
+		}
+		if (node->size == 2147483647)
+			return (node->size);
 	}
-	return (cnt);
+	return (node->size);
 }
+
 void	a_find_location(t_node *node, t_list *a, t_list *tmp)
 {
 	a = node->head->prev;
@@ -428,35 +477,6 @@ void	find_pibot(t_node *a_node, int *pibot)
 		pibot[0] = tmp->prev->data;
 		pibot[1] = tmp->data;
 	}
-
-
-	// t_list *tmp;
-	// int		i;
-	// int		j;
-	// int		min;
-
-	// printf("%d %d \n\n", fir ,sec);
-	// i = 0;
-	// j = 0;
-	// min = 0;
-	// tmp = a_node->head;
-	// while (a_node->size > j++)
-	// {
-	// 	if (tmp->data > min)
-	// 	{
-	// 		min = tmp->data;
-	// 		i++;
-	// 	}
-	// 	if (i == fir)
-	// 		pibot[0] = min;
-	// 	if (i == sec)
-	// 	{
-	// 		pibot[1] = min;
-	// 		break ;
-	// 	}
-	// 	tmp = tmp->next;
-	// }
-	// return (pibot);
 }
 void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
 {
@@ -674,7 +694,6 @@ void	sort_last(t_node *a_node)
 	min_ind = find_list_min(a_node);
 	if (min_ind >= (a_node->size + 1) / 2)
 		min_ind = (a_node->size - min_ind) * (-1);
-	printf("min_ind : %d\n", min_ind);
 	while (min_ind)
 	{
 		if (min_ind > 0)
@@ -710,26 +729,69 @@ void	sort(t_node *a_node, t_node *b_node)
 	}
 	sort_last(a_node);
 }
+int print_error(int type)
+{
+	if (type >= 1)
+		write(1, "ERROR\n", 6);
+	exit(1);
+	return (-1);
+}
+
+int is_cur_sort(t_node *a_node)
+{
+	t_list *tmp;
+
+	tmp = a_node->head;
+	while (tmp->next != a_node->head)
+	{
+		if (tmp->data < tmp->next->data)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+void	free_node(t_node *a_node, t_node *b_node)
+{
+	t_list	*tmp;
+	t_list	*rmv;
+	int		i;
+
+	i = a_node->size;
+	
+	tmp = a_node->head;
+	while (i--)
+	{
+		printf("%d\n", tmp->data);
+		rmv = tmp;
+		tmp = tmp->next;
+		free(rmv);
+	}
+	printf("b : %d\n",b_node->size);
+	free(a_node);
+	free(b_node);
+}
 
 int main(int argc, char **argv)
 {
 	t_node	*a_node;
 	t_node	*b_node;
-	int		arr_size;
 
 	if (argc < 2)
-		return (ERROR);
+		print_error(1);
 	a_node = init_node();
 	b_node = init_node();
 	if (!a_node || !b_node)
-		return (ERROR);
-	
-	arr_size = set_arr(argc, argv, a_node);
-	if (arr_size == -1)
-		return (ERROR);
+		print_error(1);
+	if (set_arr(argc, argv, a_node) == -1)
+		print_error(1);
 	if (a_node->size <= 3)
 		three_list_sort(a_node);
+	else if (is_cur_sort(a_node))
+		printf("sorting\n");
 	else
 		sort(a_node, b_node);
 	ft_lstprint(a_node);
+	free_node(a_node, b_node);
+	system("leaks a.out"); 
 }
