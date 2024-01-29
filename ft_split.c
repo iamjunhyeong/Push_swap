@@ -6,11 +6,21 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:06:55 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/28 16:00:53 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:41:25 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	n;
+
+	n = 0;
+	while (s[n] != 0)
+		n++;
+	return ((size_t)n);
+}
 
 char	**freeall(char **strs)
 {

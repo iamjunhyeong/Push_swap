@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 17:19:48 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/28 16:11:20 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/29 20:36:16 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(const char *str)
 	while (*str != 0)
 	{
 		if (*str < '0' || *str > '9')
-			return (0) ;
+			return (0);
 		res = (res * 10) + *str++ - 48;
 		if (res < -2147483648 || res > 2147483647)
 			return (0);
