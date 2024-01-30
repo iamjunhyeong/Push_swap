@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:47:59 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 21:30:26 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:50:51 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void	five_list_sort(t_node *a_node, t_node *b_node)
 {
 	int		top;
 	int		a_location;
+	int		i;
 	
+	i = 0;
 	if (a_node->size <= 3)
 		three_list_sort(a_node);
 	else
@@ -68,7 +70,7 @@ void	five_list_sort(t_node *a_node, t_node *b_node)
 		push_b(a_node, b_node);
 		push_b(a_node, b_node);
 		three_list_sort(a_node);
-		while (b_node->size)
+		while (i++ < 2)
 		{
 			top = b_node->head->prev->data;
 			a_location = find_a_location(top, a_node);

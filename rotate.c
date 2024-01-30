@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:24:13 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 18:01:28 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:56:15 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	rotate_b(t_node *node)
 {
 	if (node->size >= 2)
 	{
-		node->head = node->head->next;
+		node->head = node->head->prev;
 		write (1, "rb\n", 3);
 	}
 }

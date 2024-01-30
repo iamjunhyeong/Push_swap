@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 19:11:24 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 20:20:55 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:14:49 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_node	*init_node()
 int print_error(int type)
 {
 	if (type >= 1)
-		write(1, "ERROR\n", 6);
+		write(1, "Error\n", 6);
 	exit(1);
 	return (-1);
 }
@@ -63,6 +63,18 @@ void	free_node(t_node *a_node, t_node *b_node)
 	free(a_node);
 	free(b_node);
 }
+void	ft_lstprint(t_node *lst)
+{
+	if (lst->size == 0)
+		return ;
+	t_list	*tmp = lst->head->prev;
+	do
+	{
+		printf("%d\n", tmp->data);
+		tmp = tmp->prev;
+	} while (tmp && tmp != lst->head->prev && lst->size > 1);
+	printf("\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -83,6 +95,7 @@ int	main(int argc, char **argv)
 		five_list_sort(a_node, b_node);
 	else
 		sort(a_node, b_node);
+	// ft_lstprint(a_node);
 	free_node(a_node, b_node);
 	return (0);
 }

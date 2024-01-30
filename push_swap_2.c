@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:41:30 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 18:03:30 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/30 23:08:11 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,75 +38,137 @@ t_list	*find_top(t_node *a_node, int *ind)
 
 int	location_cmp(int ab, int lab)
 {
-	int	cnt;
-	int lcnt;
-
-	cnt = 0;
-	lcnt = 0;
-	while (ab)
-	{
-		if (ab < 0)
-			ab++;
-		else
-			ab--;
-		cnt++;
-	}
-	while (lab)
-	{
-		if (lab < 0)
-			lab++;
-		else
-			lab--;
-		lcnt++;
-	}
-	if (cnt > lcnt)
+	if (ab < 0)
+		ab = -ab;
+	if (lab < 0)
+		lab = -lab;
+	if (ab > lab)
 		return (1);
+	return (0);
+	// while (ab)
+	// {
+	// 	if (ab < 0)
+	// 		ab++;
+	// 	else
+	// 		ab--;
+	// 	cnt++;
+	// }
+	// while (lab)
+	// {
+	// 	if (lab < 0)
+	// 		lab++;
+	// 	else
+	// 		lab--;
+	// 	lcnt++;
+	// }
+	// if (cnt > lcnt)
+	// 	return (1);
+	// return (0);
+}
+void	find_pibot(t_node *a_node, int *pibot, int size)
+{
+	t_list	*tmp;
+	t_list	*t;
+	int		n;
+	int		m;
+	int		ind;
+
+	n = 0;
+	tmp = a_node->head;
+	while (n++ < size)
+	{
+		ind = 0;
+		t = tmp;
+		m = 0;
+		while (m++ < size)
+		{
+			if (t->data <= tmp->data)
+				ind++;
+			t = t->next;
+		}
+		if (ind == (a_node->size + 1) / 3 * 2)
+			pibot[0] = tmp->data;
+		if (ind == (a_node->size + 1) / 3)
+			pibot[1] = tmp->data;
+		tmp = tmp->next;
+	}
+	// printf("\n0 1: %d  %d \n", pibot[0], pibot[1]);
+	// exit(1);
+}
+
+int	get_a_location(int pibot, t_list *tmp, t_node *a_node)
+{
+	t_list	*tmp_nex;
+	t_list	*tmp_prv;
+	int		ind;
+	int		i;
+
+	// printf("pibot %d\n",pibot);
+	// printf("top %d\n",tmp->data);
+	if (tmp->data < pibot)
+		return (0);
+	tmp_nex = tmp->next;
+	tmp_prv = tmp->prev;
+	ind = 0;
+	i = 1;
+	while (i <= (a_node->size + 1) / 2)
+	{
+		if (pibot > tmp_nex->data)
+			return (-i);
+		if (pibot > tmp_prv->data)
+			return (i);
+		tmp_nex = tmp_nex->next;
+		tmp_prv = tmp_prv->prev;
+		i++;
+	}
 	return (0);
 }
 
-void	find_pibot(t_node *a_node, int *pibot)
-{
-	t_list	*tmp;
-
-	tmp = a_node->head;
-	if (tmp->data > tmp->prev->data)
-	{
-		pibot[0] = tmp->data;
-		pibot[1] = tmp->prev->data;
-	}
-	else
-	{
-		pibot[0] = tmp->prev->data;
-		pibot[1] = tmp->data;
-	}
-}
 void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
 {
 	t_list	*a_tmp;
-	int		size;
+	t_list	*b_tmp;
+	int		a_location;
 	int		ind;
 
 	ind = 0;
-	size = a_node->size;
-	a_tmp = a_node->head->prev;
-	while (size--)
+	while (a_node->size > 3)
 	{
-		if (pibot[0] > a_tmp->data)
+		a_tmp = a_node->head->prev;
+		a_location = get_a_location(pibot[0], a_tmp, a_node);
+		apply_rotate_a(a_node, a_location);
+		push_b(a_node, b_node);
+		b_tmp = b_node->head->prev;
+		if (b_node->size >= 2)
 		{
-			if (ind >= (a_node->size + 1) / 2)
-				ind = a_node->size - ind;
-			apply_rotate_a(a_node, ind);
-			push_b(a_node, b_node);
-			if (b_node->size >= 2 && pibot[1] > b_node->head->prev->data)
+			if (pibot[1] >= b_tmp->data && pibot[1] < b_tmp->prev->data)
 				rotate_b(b_node);
-			ind = 0;
 		}
-		if (a_node->size == 5)
-			break;
-		a_tmp = a_tmp->prev;
-		ind++;
+		// ft_lstprint(a_node);
+		// printf("\n--------------\n");
+		// ft_lstprint(b_node);
 	}
-	while (a_node->size > 5)
+	while (a_node->size > 3)
 		push_b(a_node, b_node);
 	five_list_sort(a_node, b_node);
 }
+
+// if (pibot[0] > a_tmp->data)
+// 		{
+// 			if (ind >= (a_node->size + 1) / 2)
+// 				ind = a_node->size - ind;
+// 			apply_rotate_a(a_node, ind);
+// 			push_b(a_node, b_node);
+// 			b_tmp = b_node->head->prev;
+// 			if (b_node->size >= 2)
+// 			{
+// 				if (pibot[1] > b_tmp->data && pibot[1] < b_tmp->prev->data)
+// 					rotate_b(b_node);
+// 			}
+// 			ind = 0;
+// 		}
+// 		else
+// 			ind++;
+// 		if (a_node->size == 5)
+// 			break ;
+// 		a_tmp = a_tmp->prev;

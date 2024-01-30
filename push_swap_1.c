@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:34:02 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 18:03:36 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/30 22:45:05 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	minimum_rotate(t_node *a_node, t_node *b_node, int *a, int *b)
 	while (ind < b_node->size)
 	{
 		b_top = b_tmp->data;
-		b_location = ind;
 		a_location = find_a_location(b_top, a_node);
+		b_location = ind;
 		if (ind >= (b_node->size + 1) / 2)
 			b_location = (b_node->size - ind) * (-1);
 		if (ind == 0 || location_cmp(*a - *b, a_location - b_location))
@@ -112,13 +112,15 @@ void	sort(t_node *a_node, t_node *b_node)
 	int		a;
 	int		b;
 
-	find_pibot(a_node, pibot);
+	find_pibot(a_node, pibot, a_node->size);
+	// printf("pibot : %d %d\n", *pibot, *(pibot + 1));
 	divide_stack(a_node, b_node, pibot);
 	while (b_node->size)
 	{
 		a = 0;
 		b = 0;
 		minimum_rotate(a_node, b_node, &a, &b);
+		// printf("\na b : %d %d \n", a, b);
 		apply_rotate_r(a_node, b_node, &a, &b);
 		apply_rotate_a(a_node, a);
 		apply_rotate_b(b_node, b);
