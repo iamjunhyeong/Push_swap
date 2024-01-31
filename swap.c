@@ -6,13 +6,13 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:47:19 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 18:01:30 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:26:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_node *node)
+void	swap_a(t_node *node, int flag)
 {
 	t_list	*a;
 	t_list	*b;
@@ -30,10 +30,11 @@ void	swap_a(t_node *node)
 	a->next = b;
 	b->next = node->head;
 	b->prev = a;
-	write(1, "sa\n", 3);
+	if (flag)
+		write(1, "sa\n", 3);
 }
 
-void	swap_b(t_node *node)
+void	swap_b(t_node *node, int flag)
 {
 	t_list	*a;
 	t_list	*b;
@@ -51,12 +52,14 @@ void	swap_b(t_node *node)
 	a->next = b;
 	b->next = node->head;
 	b->prev = a;
-	write(1, "sb\n", 3);
+	if (flag)
+		write(1, "sb\n", 3);
 }
 
-void	swap_s(t_node *a_node, t_node *b_node)
+void	swap_s(t_node *a_node, t_node *b_node, int flag)
 {
-	swap_a(a_node);
-	swap_b(b_node);
-	write(1, "ss\n", 3);
+	swap_a(a_node, 0);
+	swap_b(b_node, 0);
+	if (flag)
+		write(1, "ss\n", 3);
 }

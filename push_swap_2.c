@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:41:30 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 17:10:16 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:28:21 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,19 +187,16 @@ void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
 		a_tmp = a_node->head->prev;
 		a_location = get_a_location(pibot[0], a_tmp, a_node);
 		apply_rotate_a(a_node, a_location);
-		push_b(a_node, b_node);
+		push_b(a_node, b_node, 1);
 		b_tmp = b_node->head->prev;
 		if (b_node->size >= 2)
 		{
 			if (pibot[1] >= b_tmp->data && pibot[1] < b_tmp->prev->data)
-				rotate_b(b_node);
+				rotate_b(b_node, 1);
 		}
-		// ft_lstprint(a_node);
-		// printf("\n--------------\n");
-		// ft_lstprint(b_node);
 	}
 	while (a_node->size > 3)
-		push_b(a_node, b_node);
+		push_b(a_node, b_node, 1);
 	three_list_sort(a_node);
 }
 

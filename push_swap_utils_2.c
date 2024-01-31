@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:47:59 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 19:56:51 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:34:56 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void	five_list_sort(t_node *a_node, t_node *b_node)
 		three_list_sort(a_node);
 	else
 	{	
-		push_b(a_node, b_node);
-		push_b(a_node, b_node);
+		push_b(a_node, b_node, 1);
+		push_b(a_node, b_node, 1);
 		three_list_sort(a_node);
 		while (i++ < 2)
 		{
 			top = b_node->head->prev->data;
 			a_location = find_a_location(top, a_node);
 			apply_rotate_a(a_node, a_location);
-			push_a(a_node, b_node);
+			push_a(a_node, b_node, 1);
 		}
 		sort_last(a_node);
 	}

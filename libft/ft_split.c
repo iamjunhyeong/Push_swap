@@ -5,12 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:40:24 by junhyeop          #+#    #+#             */
-/*   Updated: 2023/11/03 17:46:30 by junhyeop         ###   ########.fr       */
+/*   Created: 2024/01/23 17:06:55 by junhyeop          #+#    #+#             */
+/*   Updated: 2024/01/31 21:51:37 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	n;
+
+	n = 0;
+	while (s[n] != 0)
+		n++;
+	return ((size_t)n);
+}
 
 char	**freeall(char **strs)
 {
@@ -62,20 +72,21 @@ char	*split_str(char const *s, char c)
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, int *cnt)
 {
 	char	**strs;
-	int		cnt;
+	int		n;
 	int		i;
 
 	if (!s)
 		return (NULL);
-	cnt = strcnt(s, c);
-	strs = (char **)malloc(sizeof(char *) * (cnt + 1));
+	n = strcnt(s, c);
+	*cnt += n;
+	strs = (char **)malloc(sizeof(char *) * (n + 1));
 	if (!strs)
 		return (NULL);
 	i = 0;
-	while (i < cnt)
+	while (i < n)
 	{
 		while (*s && *s == c)
 			s++;

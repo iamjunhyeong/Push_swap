@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:34:02 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 16:57:02 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:50:07 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ void	sort_last(t_node *a_node)
 	{
 		if (min_ind > 0)
 		{
-			rotate_a(a_node);
+			rotate_a(a_node, 1);
 			min_ind--;
 		}
 		else
 		{
-			rev_rotate_a(a_node);
+			rev_rotate_a(a_node, 1);
 			min_ind++;
 		}
 	}
@@ -113,22 +113,16 @@ void	sort(t_node *a_node, t_node *b_node)
 	int		b;
 
 	find_pibot(a_node, pibot, a_node->size);
-	// printf("pibot : %d %d\n", *pibot, *(pibot + 1));
 	divide_stack(a_node, b_node, pibot);
 	while (b_node->size)
 	{
 		a = 0;
 		b = 0;
 		minimum_rotate(a_node, b_node, &a, &b);
-		// printf("\na b : %d %d \n", a, b);
 		apply_rotate_r(a_node, b_node, &a, &b);
 		apply_rotate_a(a_node, a);
 		apply_rotate_b(b_node, b);
-		push_a(a_node, b_node);
-
-		// ft_lstprint(a_node);
-		// printf("\n--------------\n");
-		// ft_lstprint(b_node);
+		push_a(a_node, b_node, 1);
 	}
 	sort_last(a_node);
 }

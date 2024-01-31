@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:49 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 19:57:38 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:50:47 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ void	apply_rotate_b(t_node *b_node, int b);
 void	two_list_sort(t_node *node);
 void	three_list_sort(t_node *node);
 void	push_a_ext(t_node *a_node, t_list *top, t_list *tmp);
-void	push_a(t_node *a_node, t_node *b_node);
+void	push_a(t_node *a_node, t_node *b_node, int flag);
 void	push_b_ext(t_node *b_node, t_list *top, t_list *tmp);
-void	push_b(t_node *a_node, t_node *b_node);
-void	rev_rotate_a(t_node *node);
-void	rev_rotate_b(t_node *node);
-void	rev_rotate_r(t_node *a_node, t_node *b_node);
-void	rotate_a(t_node *node);
-void	rotate_b(t_node *node);
-void	rotate_r(t_node *a_node, t_node *b_node);
-void	swap_a(t_node *node);
-void	swap_b(t_node *node);
-void	swap_s(t_node *a_node, t_node *b_node);
+void	push_b(t_node *a_node, t_node *b_node, int flag);
+void	rev_rotate_a(t_node *node, int flag);
+void	rev_rotate_b(t_node *node, int flag);
+void	rev_rotate_r(t_node *a_node, t_node *b_node, int flag);
+void	rotate_a(t_node *node, int flag);
+void	rotate_b(t_node *node, int flag);
+void	rotate_r(t_node *a_node, t_node *b_node, int flag);
+void	swap_a(t_node *node, int flag);
+void	swap_b(t_node *node, int flag);
+void	swap_s(t_node *a_node, t_node *b_node, int flag);
 void	five_list_sort(t_node *a_node, t_node *b_node);
 void	b_find_location(t_node *node, t_list *b, t_list *tmp);
 void	a_find_location(t_node *node, t_list *a, t_list *tmp);
@@ -79,6 +79,9 @@ int		is_str_space(char *str);
 int		set_parsing(int ac, char **av, t_node *node);
 int		is_space(char c);
 int		is_zero(char *str);
+int		is_sort(t_node *a_node);
+
+int		checker(t_node *a_node, t_node *b_node);
 
 
 

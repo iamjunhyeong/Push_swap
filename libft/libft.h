@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:58:53 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 19:32:26 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:52:34 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *string, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c, int *cnt);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+int		ft_strcmp(const char *s1, const char *s2);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));

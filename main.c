@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 19:11:24 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 18:09:47 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:49:45 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,6 @@ void	free_node(t_node *a_node, t_node *b_node)
 	}
 	free(a_node);
 	free(b_node);
-}
-void	ft_lstprint(t_node *lst)
-{
-	if (lst->size == 0)
-		return ;
-	t_list	*tmp = lst->head->prev;
-	do
-	{
-		printf("%d\n", tmp->data);
-		tmp = tmp->prev;
-	} while (tmp && tmp != lst->head->prev && lst->size > 1);
-	printf("\n");
 }
 
 int	main(int argc, char **argv)

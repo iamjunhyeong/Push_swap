@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:26:15 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 18:02:49 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 21:27:15 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	push_a_ext(t_node *a_node, t_list *top, t_list *tmp)
 	}
 }
 
-void	push_a(t_node *a_node, t_node *b_node)
+void	push_a(t_node *a_node, t_node *b_node, int flag)
 {
 	t_list	*top;
 	t_list	*tmp;
@@ -51,7 +51,8 @@ void	push_a(t_node *a_node, t_node *b_node)
 	b_node->size--;
 	push_a_ext(a_node, top, tmp);
 	a_node->size++;
-	write (1, "pa\n", 3);
+	if (flag)
+		write (1, "pa\n", 3);
 }
 
 void	push_b_ext(t_node *b_node, t_list *top, t_list *tmp)
@@ -79,7 +80,7 @@ void	push_b_ext(t_node *b_node, t_list *top, t_list *tmp)
 	}
 }
 
-void	push_b(t_node *a_node, t_node *b_node)
+void	push_b(t_node *a_node, t_node *b_node, int flag)
 {
 	t_list	*top;
 	t_list	*tmp;
@@ -93,5 +94,6 @@ void	push_b(t_node *a_node, t_node *b_node)
 	a_node->size--;
 	push_b_ext(b_node, top, tmp);
 	b_node->size++;
-	write (1, "pb\n", 3);
+	if (flag)
+		write (1, "pb\n", 3);
 }
