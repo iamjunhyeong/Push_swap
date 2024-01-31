@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:47:59 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/30 17:50:51 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:56:51 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_lstadd_back(t_node *node, t_list *new)
 		new->prev = tmp;
 		new->next = tmp;
 	}
-	else 
+	else
 	{	
 		pre = tmp->prev;
 		tmp->prev = new;
@@ -41,11 +41,24 @@ int	ft_lstadd_back(t_node *node, t_list *new)
 	return (1);
 }
 
-t_list	*ft_lstnew(int data, int flag)
+t_list	*ft_lstnew_zero(int data)
 {
 	t_list	*newnode;
 
-	if (!flag && data == 0)
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (!newnode)
+		return (NULL);
+	newnode->prev = newnode;
+	newnode->next = newnode;
+	newnode->data = data;
+	return (newnode);
+}
+
+t_list	*ft_lstnew_node(int data)
+{
+	t_list	*newnode;
+
+	if (data == 0)
 		return (NULL);
 	newnode = (t_list *)malloc(sizeof(t_list));
 	if (!newnode)
@@ -61,7 +74,7 @@ void	five_list_sort(t_node *a_node, t_node *b_node)
 	int		top;
 	int		a_location;
 	int		i;
-	
+
 	i = 0;
 	if (a_node->size <= 3)
 		three_list_sort(a_node);

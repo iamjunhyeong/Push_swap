@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 19:11:24 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/30 18:14:49 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:09:47 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ t_node	*init_node()
 	return (node);
 }
 
-int print_error(int type)
+void	print_error(int type)
 {
 	if (type >= 1)
 		write(1, "Error\n", 6);
 	exit(1);
-	return (-1);
 }
 
 int is_cur_sort(t_node *a_node)
@@ -82,7 +81,7 @@ int	main(int argc, char **argv)
 	t_node	*b_node;
 
 	if (argc < 2)
-		print_error(1);
+		return (0);
 	a_node = init_node();
 	b_node = init_node();
 	if (!a_node || !b_node)
@@ -95,7 +94,6 @@ int	main(int argc, char **argv)
 		five_list_sort(a_node, b_node);
 	else
 		sort(a_node, b_node);
-	// ft_lstprint(a_node);
 	free_node(a_node, b_node);
 	return (0);
 }

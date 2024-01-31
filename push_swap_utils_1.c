@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/29 21:21:47 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:57:22 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 int	equal_check(t_node *a_node, int data)
 {
 	t_list	*tmp;
+	int		i;
 
-	if (a_node->size <= 1)
+	i = 0;
+	if (a_node->size == 0)
 		return (1);
-	tmp = a_node->head;
-	while (tmp->next != a_node->head)
+	tmp = a_node->head->prev;
+	while (i < a_node->size)
 	{
 		if (data == tmp->data)
 			return (0);
-		tmp = tmp->next;
+		tmp = tmp->prev;
+		i++;
 	}
 	return (1);
 }
@@ -37,7 +40,10 @@ int	long_length_word(int ac, char **av, t_node *node)
 	str = ft_split(av[ac], ' ', &cnt);
 	while (cnt--)
 	{
-		tmp = ft_lstnew(ft_atoi(str[cnt]), is_zero(str[cnt]));
+		if (is_zero(str[cnt]))
+			tmp = ft_lstnew_zero(ft_atoi(str[cnt]));
+		else
+			tmp = ft_lstnew_node(ft_atoi(str[cnt]));
 		if (!tmp || !equal_check(node, tmp->data))
 		{
 			str = freeall(str);
@@ -54,8 +60,11 @@ int	long_length_word(int ac, char **av, t_node *node)
 int	one_length_word(int ac, char **av, t_node *node)
 {
 	t_list	*tmp;
-	
-	tmp = ft_lstnew(ft_atoi(av[ac]), is_zero(av[ac]));
+
+	if (is_zero(av[ac]))
+		tmp = ft_lstnew_zero(ft_atoi(av[ac]));
+	else
+		tmp = ft_lstnew_node(ft_atoi(av[ac]));
 	if (!tmp || !equal_check(node, tmp->data))
 		return (0);
 	ft_lstadd_back(node, tmp);

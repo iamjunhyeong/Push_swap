@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:34:02 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/30 22:45:05 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:57:02 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	minimum_rotate(t_node *a_node, t_node *b_node, int *a, int *b)
 		b_location = ind;
 		if (ind >= (b_node->size + 1) / 2)
 			b_location = (b_node->size - ind) * (-1);
-		if (ind == 0 || location_cmp(*a - *b, a_location - b_location))
+		if (ind == 0 || location_cmp(*a, *b, a_location, b_location))
 		{
 			*a = a_location;
 			*b = b_location;
@@ -125,6 +125,10 @@ void	sort(t_node *a_node, t_node *b_node)
 		apply_rotate_a(a_node, a);
 		apply_rotate_b(b_node, b);
 		push_a(a_node, b_node);
+
+		// ft_lstprint(a_node);
+		// printf("\n--------------\n");
+		// ft_lstprint(b_node);
 	}
 	sort_last(a_node);
 }
