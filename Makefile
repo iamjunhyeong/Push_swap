@@ -31,21 +31,17 @@ SRCS = push_swap_1.c \
 SRCS_BONUS = checker.c
 
 OBJS = $(SRCS:.c=.o)
-
 OBJS_BONUS = $(SRC_BONUS:.c=.o)
 
-ifdef WITH_BONUS
-	NAME := $(CHKER_NAME)
-endif
-
-%o : %c ($(foreach D, $(INCDIRS), $(D)*.h))
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-$(NAME) : $(OBJS) $(LIB)
-	$(CC) -o $(NAME) $(OBJS) -L$(LIBDIR) -l$(LIBNAME)
+%o : %c $(INC)
+	$(CC) -c -o $@ $<
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR) all
+	
+$(NAME) : $(OBJS) $(LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBDIR) -l$(LIBNAME)
+
 
 all: $(NAME)
 
@@ -60,6 +56,6 @@ fclean: clean
 re: fclean bonus
 
 bonus : all $(OBJ_BONUS)
-        $(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) -L$(LIBDIR) -l$(LIBNAME)
 
 .PHONY: all clean fclean re bonus
