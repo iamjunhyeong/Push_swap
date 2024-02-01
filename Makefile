@@ -1,4 +1,6 @@
 NAME = push_swap
+NAME_BONUS = checker
+
 CFLAGS = -Wall -Wextra -Werror
 CC = cc
 AR = ar
@@ -26,9 +28,11 @@ SRCS = push_swap_1.c \
 		rotate.c \
 		swap.c 
 
-SRCS_CHECKER = checker.c
+SRCS_BONUS = checker.c
 
 OBJS = $(SRCS:.c=.o)
+
+OBJS_BONUS = $(SRC_BONUS:.c=.o)
 
 ifdef WITH_BONUS
 	NAME := $(CHKER_NAME)
@@ -36,8 +40,6 @@ endif
 
 %o : %c ($(foreach D, $(INCDIRS), $(D)*.h))
 	$(CC) $(CFLAGS) -c -o $@ $<
-
-$(CHKER_NAME) : 
 
 $(NAME) : $(OBJS) $(LIB)
 	$(CC) -o $(NAME) $(OBJS) -L$(LIBDIR) -l$(LIBNAME)
@@ -52,12 +54,12 @@ clean:
 	$(MAKE) -C $(LIBDIR) clean
 
 fclean: clean
-	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(RMFLAGS) $(NAME) $(NAME_BONUS)
 	$(MAKE) -C $(LIBDIR) fclean
 
-re: fclean all
+re: fclean bonus
 
-bonus :
-	make WITH_BONUS=1
+bonus : all $(OBJ_BONUS)
+        $(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT)
 
 .PHONY: all clean fclean re bonus
