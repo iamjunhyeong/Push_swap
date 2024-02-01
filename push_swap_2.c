@@ -131,7 +131,6 @@ int	get_a_location(int pibot, t_list *tmp, t_node *a_node)
 {
 	t_list	*tmp_nex;
 	t_list	*tmp_prv;
-	int		ind;
 	int		i;
 
 	// printf("pibot %d\n",pibot);
@@ -140,7 +139,6 @@ int	get_a_location(int pibot, t_list *tmp, t_node *a_node)
 		return (0);
 	tmp_nex = tmp->next;
 	tmp_prv = tmp->prev;
-	ind = 0;
 	i = 1;
 	while (i <= (a_node->size + 1) / 2)
 	{
@@ -177,9 +175,7 @@ void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
 	t_list	*a_tmp;
 	t_list	*b_tmp;
 	int		a_location;
-	int		ind;
 
-	ind = 0;
 	while (a_node->size > 3)
 	{
 		if (is_sort(a_node))
