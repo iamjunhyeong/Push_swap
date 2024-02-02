@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:08:20 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 21:12:03 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:00:38 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CHECKER_BONUS_H
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_list
 {

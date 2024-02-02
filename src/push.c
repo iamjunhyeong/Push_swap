@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:26:15 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:27:09 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:04:00 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 void	push_a_ext(t_node *a_node, t_list *top, t_list *tmp)
 {

@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:47:59 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:34:56 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:55 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	ft_lstadd_back(t_node *node, t_list *new)
 {

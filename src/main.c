@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 19:11:24 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:28:52 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:35 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 t_node	*init_node(void)
 {

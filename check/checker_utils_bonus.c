@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:08:01 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 20:31:53 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:25 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../inc/checker_bonus.h"
 
 void	print_ok(void)
 {

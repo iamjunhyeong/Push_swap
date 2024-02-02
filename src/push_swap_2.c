@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:41:30 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:37:53 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:47 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 t_list	*find_top(t_node *a_node, int *ind)
 {

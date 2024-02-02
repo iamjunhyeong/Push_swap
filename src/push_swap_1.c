@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:34:02 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:50:07 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:44 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	find_a_location(int top, t_node *a_node)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_prs_2.c                                    :+:      :+:    :+:   */
+/*   checker_prs_2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:32:08 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:43:55 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:22 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../inc/checker_bonus.h"
 
 t_list	*ft_lstnew_zero(int data)
 {

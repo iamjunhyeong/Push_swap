@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:54:47 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 21:11:44 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:15 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../inc/checker_bonus.h"
 
 void	push_a_ext(t_node *a_node, t_list *top, t_list *tmp)
 {

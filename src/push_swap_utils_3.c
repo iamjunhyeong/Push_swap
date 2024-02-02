@@ -6,11 +6,11 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:39:07 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:40:01 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:03:57 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	cnt_ab1(int *a, int *b)
 {

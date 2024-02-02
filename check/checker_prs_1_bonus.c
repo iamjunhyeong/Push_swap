@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils_1.c                                :+:      :+:    :+:   */
+/*   checker_prs_1_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 18:51:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:30:43 by junhyeop         ###   ########.fr       */
+/*   Created: 2024/02/02 16:29:49 by junhyeop          #+#    #+#             */
+/*   Updated: 2024/02/02 22:03:20 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/checker_bonus.h"
 
 int	equal_check(t_node *a_node, int data)
 {
