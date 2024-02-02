@@ -45,16 +45,8 @@ SRCS = ft_memset.c \
 		ft_putnbr_fd.c \
 		ft_strdup.c \
 		ft_striteri.c
-		ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstmap.c	\
-SRCS_FTPF = ft_itoa_hex.c ft_itoa.c ft_printf.c ft_printf_option.c ft_printf_option_2.c printf_utils.c 
+
+SRCS_FTPF = ft_printf.c ft_itoa_hex.c ft_itoa.c printf_option.c printf_option_2.c printf_utils.c 
 SRCS_GNL = get_next_line.c get_next_line_utils.c
 
 SRCS += $(foreach D, $(SRCS_FTPF), $(FTPFDIR)$(D)) \
