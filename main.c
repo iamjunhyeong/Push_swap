@@ -6,15 +6,15 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 19:11:24 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:49:45 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:28:52 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*init_node()
+t_node	*init_node(void)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
@@ -31,16 +31,19 @@ void	print_error(int type)
 	exit(1);
 }
 
-int is_cur_sort(t_node *a_node)
+int	is_sort(t_node *a_node)
 {
 	t_list	*tmp;
+	int		i;
 
-	tmp = a_node->head;
-	while (tmp->next != a_node->head)
+	i = 1;
+	tmp = a_node->head->prev;
+	while (i < a_node->size)
 	{
-		if (tmp->data < tmp->next->data)
+		if (tmp->data > tmp->prev->data)
 			return (0);
-		tmp = tmp->next;
+		tmp = tmp->prev;
+		i++;
 	}
 	return (1);
 }
@@ -76,7 +79,7 @@ int	main(int argc, char **argv)
 		print_error(1);
 	if (set_parsing(argc, argv, a_node) <= 0)
 		print_error(1);
-	if (is_cur_sort(a_node))
+	if (is_sort(a_node))
 		exit(1);
 	else if (a_node->size <= 5)
 		five_list_sort(a_node, b_node);

@@ -1,61 +1,67 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/02 15:01:09 by junhyeop          #+#    #+#              #
+#    Updated: 2024/02/02 19:48:47 by junhyeop         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
+
 NAME_BONUS = checker
 
-CFLAGS = -Wall -Wextra -Werror
-CC = cc
-AR = ar
-MAKE = make
-ARFLAGS = -rcs
-
-RM = rm
-RMFLAGS = -f
-
-INCDIRS = ./
-INC = ./push_swap.h
-
-LIBDIR = ./libft/
-LIBNAME = ft
-LIB = $(LIBDIR)lib$(LIBNAME).a
-
-SRCS = push_swap_1.c \
+SRC	= push_swap_1.c \
 		push_swap_2.c \
 		push_swap_3.c \
 		push_swap_utils_1.c \
 		push_swap_utils_2.c \
+		push_swap_utils_3.c \
 		main.c \
 		push.c \
 		rev_rotate.c \
 		rotate.c \
 		swap.c 
 
-SRCS_BONUS = checker.c
+SRC_BONUS = checker_bonus.c checker_utils_bonus.c checker_do_op_1_bonus.c checker_do_op_2_bonus.c \
+			checker_do_op_3_bonus.c checker_prs_1_bonus.c checker_prs_2_bonus.c
 
-OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRC_BONUS:.c=.o)
+LIBFT = libft/libft.a
 
-%o : %c $(INC)
-	$(CC) -c -o $@ $<
+OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
-$(LIB):
-	$(MAKE) -C $(LIBDIR) all
-	
-$(NAME) : $(OBJS) $(LIB)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBDIR) -l$(LIBNAME)
+CC = cc
+MAKE = make
+RM = rm -f
 
+CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+$(NAME): $(OBJ)
+		MAKE -C ./libft
+		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
+
+all:		$(NAME)
 
 clean:
-	$(RM) $(RMFLAGS) $(OBJS)
-	$(MAKE) -C $(LIBDIR) clean
+			make clean -C libft
+			${RM} $(OBJ) $(OBJ_BONUS)
 
-fclean: clean
-	$(RM) $(RMFLAGS) $(NAME) $(NAME_BONUS)
-	$(MAKE) -C $(LIBDIR) fclean
+fclean: 	clean
+			make fclean -C libft
+			${RM} $(NAME) $(NAME_BONUS) ${OBJ} $(OBJ_BONUS)
 
-re: fclean bonus
+re:			fclean bonus
 
-bonus : all $(OBJ_BONUS)
-	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) -L$(LIBDIR) -l$(LIBNAME)
+bonus:		all $(OBJ_BONUS)
+			$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT)
 
-.PHONY: all clean fclean re bonus
+
+.PHONY:		all clean fclean re bonus
+
+
+
+

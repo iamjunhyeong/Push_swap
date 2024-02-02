@@ -6,19 +6,19 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:49 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:50:47 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:43:29 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/get_next_line/get_next_line.h"
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 
-typedef struct s_list 
+typedef struct s_list
 {
 	int				data;
 	struct s_list	*next;
@@ -34,7 +34,7 @@ typedef struct s_node
 t_list	*ft_lstnew_node(int data);
 t_list	*ft_lstnew_zero(int data);
 t_list	*find_top(t_node *a_node, int *ind);
-t_node	*init_node();
+t_node	*init_node(void);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c, int *cnt);
 char	**freeall(char **strs);
@@ -68,7 +68,6 @@ void	a_find_location(t_node *node, t_list *a, t_list *tmp);
 void	print_error(int type);
 int		ft_atoi(const char *str);
 int		ft_lstadd_back(t_node *node, t_list *new);
-int 	is_cur_sort(t_node *a_node);
 int		find_a_location(int top, t_node *a_node);
 int		find_list_min(t_node *a_node);
 int		location_cmp(int a, int b, int al, int bl);
@@ -80,12 +79,5 @@ int		set_parsing(int ac, char **av, t_node *node);
 int		is_space(char c);
 int		is_zero(char *str);
 int		is_sort(t_node *a_node);
-
-int		checker(t_node *a_node, t_node *b_node);
-
-
-
-
-void	ft_lstprint(t_node *lst);
 
 #endif

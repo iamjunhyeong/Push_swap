@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:41:30 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:28:21 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:37:53 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,58 +36,10 @@ t_list	*find_top(t_node *a_node, int *ind)
 	return (tmp);
 }
 
-int	cnt_ab1(int *a, int *b)
-{
-	int	cnt; 
-
-	cnt = 0;
-	while (*a > 0 && *b > 0)
-	{
-		*a -= 1;
-		*b -= 1;
-		cnt++;
-	}
-	while (*a < 0 && *b < 0)
-	{
-		*a += 1;
-		*b += 1;
-		cnt++;
-	}
-	return cnt;
-}
-
-int	cnt_ab2(int *a, int *b)
-{
-	int cnt;
-
-	cnt = 0;
-	while (*a > 0)
-	{
-		*a -= 1;
-		cnt++;
-	}
-	while (*a < 0)
-	{
-		*a += 1;
-		cnt++;
-	}
-	while (*b > 0)
-	{
-		cnt++;
-		*b -= 1;
-	}
-	while (*b < 0)
-	{
-		*b += 1;
-		cnt++;
-	}
-	return (cnt);
-}
-
 int	location_cmp(int a, int b, int al, int bl)
 {
-	int ab;
-	int lab;
+	int	ab;
+	int	lab;
 
 	ab = cnt_ab1(&a, &b) + cnt_ab2(&a, &b);
 	lab = cnt_ab1(&al, &bl) + cnt_ab2(&al, &bl);
@@ -123,8 +75,6 @@ void	find_pibot(t_node *a_node, int *pibot, int size)
 			pibot[1] = tmp->data;
 		tmp = tmp->next;
 	}
-	// printf("\n0 1: %d  %d \n", pibot[0], pibot[1]);
-	// exit(1);
 }
 
 int	get_a_location(int pibot, t_list *tmp, t_node *a_node)
@@ -133,8 +83,6 @@ int	get_a_location(int pibot, t_list *tmp, t_node *a_node)
 	t_list	*tmp_prv;
 	int		i;
 
-	// printf("pibot %d\n",pibot);
-	// printf("top %d\n",tmp->data);
 	if (tmp->data < pibot)
 		return (0);
 	tmp_nex = tmp->next;
@@ -151,23 +99,6 @@ int	get_a_location(int pibot, t_list *tmp, t_node *a_node)
 		i++;
 	}
 	return (0);
-}
-
-int	is_sort(t_node *a_node)
-{
-	t_list	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = a_node->head->prev;
-	while (i < a_node->size)
-	{
-		if (tmp->data > tmp->prev->data)
-			return (0);
-		tmp = tmp->prev;
-		i++;
-	}
-	return (1);
 }
 
 void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
@@ -195,23 +126,3 @@ void	divide_stack(t_node *a_node, t_node *b_node, int *pibot)
 		push_b(a_node, b_node, 1);
 	three_list_sort(a_node);
 }
-
-// if (pibot[0] > a_tmp->data)
-// 		{
-// 			if (ind >= (a_node->size + 1) / 2)
-// 				ind = a_node->size - ind;
-// 			apply_rotate_a(a_node, ind);
-// 			push_b(a_node, b_node);
-// 			b_tmp = b_node->head->prev;
-// 			if (b_node->size >= 2)
-// 			{
-// 				if (pibot[1] > b_tmp->data && pibot[1] < b_tmp->prev->data)
-// 					rotate_b(b_node);
-// 			}
-// 			ind = 0;
-// 		}
-// 		else
-// 			ind++;
-// 		if (a_node->size == 5)
-// 			break ;
-// 		a_tmp = a_tmp->prev;

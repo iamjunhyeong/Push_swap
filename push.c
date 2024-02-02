@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:26:15 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:27:15 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:27:09 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	push_a(t_node *a_node, t_node *b_node, int flag)
 	t_list	*tmp;
 
 	tmp = NULL;
-	if (b_node == NULL)
+	if (b_node->size == 0)
 		return ;
 	top = b_node->head->prev;
 	top->prev->next = top->next;
@@ -86,7 +86,7 @@ void	push_b(t_node *a_node, t_node *b_node, int flag)
 	t_list	*tmp;
 
 	tmp = NULL;
-	if (a_node == NULL)
+	if (a_node->size == 0)
 		return ;
 	top = a_node->head->prev;
 	top->prev->next = top->next;

@@ -54,7 +54,7 @@ void		lst_delone(t_gnl_list *remove, t_gnl_list **head, t_gnl_list *tmp);
 char		*read_line_ext(t_var *var);
 char		*get_next_line(int fd);
 char		*ft_strndup(const char *str, size_t n);
-char		*ft_strjoin(char *s1, char *s2, int n);
+char		*ft_strnjoin(char *s1, char *s2, int n);
 char		*read_line(t_var *var, int fd);
 int			find_newline(char *line);
 char		*load_backup(t_var *var, char **backup, char *result, char *temp);

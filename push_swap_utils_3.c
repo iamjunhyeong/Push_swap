@@ -1,26 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   push_swap_utils_3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 19:32:56 by junhyeop          #+#    #+#             */
-/*   Updated: 2023/11/03 17:52:01 by junhyeop         ###   ########.fr       */
+/*   Created: 2024/02/02 19:39:07 by junhyeop          #+#    #+#             */
+/*   Updated: 2024/02/02 19:40:01 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_lstsize(t_list *lst)
+int	cnt_ab1(int *a, int *b)
 {
-	int		cnt;
+	int	cnt;
 
 	cnt = 0;
-	while (lst)
+	while (*a > 0 && *b > 0)
+	{
+		*a -= 1;
+		*b -= 1;
+		cnt++;
+	}
+	while (*a < 0 && *b < 0)
+	{
+		*a += 1;
+		*b += 1;
+		cnt++;
+	}
+	return (cnt);
+}
+
+int	cnt_ab2(int *a, int *b)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (*a > 0)
+	{
+		*a -= 1;
+		cnt++;
+	}
+	while (*a < 0)
+	{
+		*a += 1;
+		cnt++;
+	}
+	while (*b > 0)
 	{
 		cnt++;
-		lst = lst->next;
+		*b -= 1;
+	}
+	while (*b < 0)
+	{
+		*b += 1;
+		cnt++;
 	}
 	return (cnt);
 }

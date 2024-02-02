@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:38 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 19:57:22 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:30:43 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	equal_check(t_node *a_node, int data)
 	}
 	return (1);
 }
+
 int	long_length_word(int ac, char **av, t_node *node)
 {
 	t_list	*tmp;

@@ -34,7 +34,7 @@ char	*ft_strndup(const char *str, size_t n)
 	return (copy);
 }
 
-char	*ft_strjoin(char *s1, char *s2, int n)
+char	*ft_strnjoin(char *s1, char *s2, int n)
 {
 	t_strjoin_var	var;
 	int				n_cp;

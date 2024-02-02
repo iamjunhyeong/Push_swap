@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:47:19 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/01/31 21:26:34 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:38:29 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	swap_a(t_node *node, int flag)
 	t_list	*b;
 
 	if (node == NULL || node->size == 1)
-		return ;	
+		return ;
 	a = node->head->prev;
 	b = a->prev;
 	if (node->size >= 3)
@@ -40,7 +40,7 @@ void	swap_b(t_node *node, int flag)
 	t_list	*b;
 
 	if (node == NULL || node->size == 1)
-		return ;	
+		return ;
 	a = node->head->prev;
 	b = a->prev;
 	if (node->size >= 3)

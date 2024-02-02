@@ -89,9 +89,9 @@ char	*read_line_ext(t_var *var)
 	}
 	temp = var->line;
 	if (var->len_nl)
-		var->line = ft_strjoin(temp, var->buf, var->len_nl);
+		var->line = ft_strnjoin(temp, var->buf, var->len_nl);
 	else
-		var->line = ft_strjoin(temp, var->buf, var->len_read);
+		var->line = ft_strnjoin(temp, var->buf, var->len_read);
 	free(temp);
 	return (var->line);
 }
@@ -130,7 +130,7 @@ char	*get_next_line(int fd)
 	var.tmp = find_fd(&head, fd, NULL);
 	if (!var.tmp)
 		return (NULL);
-	if (read(fd, NULL, 0) == -1 || BUFFER_SIZE <= 0)
+	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
 	{
 		lst_delone(var.tmp, &head, NULL);
 		return (NULL);
