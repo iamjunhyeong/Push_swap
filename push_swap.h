@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:51:49 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 19:43:29 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:51:40 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct s_list
 {
@@ -78,6 +77,8 @@ int		is_str_space(char *str);
 int		set_parsing(int ac, char **av, t_node *node);
 int		is_space(char c);
 int		is_zero(char *str);
+int		cnt_ab1(int *a, int *b);
+int		cnt_ab2(int *a, int *b);
 int		is_sort(t_node *a_node);
 
 #endif

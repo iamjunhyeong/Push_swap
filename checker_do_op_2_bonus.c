@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_do_op_2.c                                  :+:      :+:    :+:   */
+/*   checker_do_op_2_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 15:54:47 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 18:05:20 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 21:11:44 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	push_a(t_node *a_node, t_node *b_node, int flag)
 	top->next->prev = top->prev;
 	b_node->size--;
 	a_node->size++;
-	write(1, "hi\n", 3);
 	push_a_ext(a_node, top, tmp);
 	if (flag)
 		write (1, "pa\n", 3);

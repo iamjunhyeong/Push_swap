@@ -6,7 +6,7 @@
 /*   By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:58:53 by junhyeop          #+#    #+#             */
-/*   Updated: 2024/02/02 17:22:27 by junhyeop         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:52:44 by junhyeop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "./get_next_line/get_next_line.h"
+# include "./ft_printf/ft_printf.h"
 
 int		ft_atoi(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
